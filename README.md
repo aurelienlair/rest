@@ -15,11 +15,11 @@ aurelien@linux:~$ sudo apt-get update
 aurelien@linux:~$ sudo apt dist-upgrade
 aurelien@linux:~$ sudo apt-get install python2.7
 aurelien@linux:~$ sudo apt-get install python-pip
-aurelien@linux:~$ pip -V 
+aurelien@linux:~$ /usr/bin/pip -V 
 pip 9.0.1
 
-aurelien@linux:~$ pip search mjson.tool
+aurelien@linux:~$ /usr/bin/pip search mjson.tool
 mjson (0.3.1)  - Extended "python -mjson.tool"
-aurelien@linux:~$ pip install mjson.tool
+aurelien@linux:~$ /usr/bin/pip install mjson.tool
 ```
 Now that we have a pretty Json parser let's get started!
