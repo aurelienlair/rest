@@ -1,5 +1,4 @@
-# rest
-Rest API usage
+# Rest what is this?
 
 REST (REpresentational State Transfer) is an architectural style for developing web services.
 The (main) characteristics are that REST is:
@@ -44,7 +43,7 @@ Before starting please configure your host file as below:
 
 Then launch the server
 
-`aurelien@linux:~$ /usr/bin/php -S www.restthebest.com:8888 public/index.php public/index.php`
+`aurelien@linux:~$ /usr/bin/php -S www.restisthebest.com:8888 public/index.php`
 
 In order to check if it works try this:
 
@@ -67,15 +66,36 @@ aurelien@linux:~$ curl -v "http://www.restisthebest.com:8888"
 Hello world
 ```
 
-Note: the following introduction of REST will use a domain with `actors`. It will show how with simple APIs we are able to CRUD by following the http standards.
+Note: the following introduction of REST will use a domain with `actors`. It will show how with simple APIs we are able to use CRUD operations by following the http standards.
 
 1. POST
 
 As specified within the [RFC](https://tools.ietf.org/html/rfc7231#section-4.3.3) the `POST` method is used to request that the origin server accept the entity enclosed in the request as a new subordinate of the resource identified by the Request-URI in the Request-Line.
 
+So in our case with a `POST` request on the `actors` URI we will request the server to create a new resource within the `actors` collection.
+
+The characteristics of a `POST` request are:
+
+* it *not* [idempotent](https://en.wikipedia.org/wiki/Idempotence) which means that we can make that same call repeatedly it will not produce the same result. 
+* it is *not* safe, meaning they are only intended for retrieving data
+* is *not* cacheable
+
 
 | HTTP Verb | CRUD  |  Entire Collection (e.g. /actors) | Specific Item (e.g. /actors/{id}  |
 |---|---|---|---|
-|POST   |Create   |201 (Created), 'Location' header with link to /actor/{id} containing new ID.   | 404 (Not Found), 409 (Conflict) if resource already exists..  |
+|POST   |Create   |201 (Created), 'Location' header with link to /actors/{id} containing new ID.   | 404 (Not Found), 409 (Conflict) if resource already exists..  |
 
+
+The comand to create a new actor in our small server is
+```
+aurelien@linux:~$ curl -v -H "Content-type: application/x-www-form-urlencoded" \
+-d "firstname=Ewan&lastname=McGregor&country=GB" \
+-X POST "http://www.restisthebest.com:8888/api/actors" 
+
+
+aurelien@linux:~$ curl -v -H "Content-type: application/json" \
+-d '{"firstname":"Ewan","lastname":"McGregor","country":"GB"}' \
+-X POST "http://www.restisthebest.com:8888/api/actors" 
+```
+You can see 2 different media types of the same request, one with the data in [Json](https://en.wikipedia.org/wiki/JSON) format, the other one is the [application/x-www-form-urlencoded](https://en.wikipedia.org/wiki/Percent-encoding#The_application.2Fx-www-form-urlencoded_type) media type.
 
