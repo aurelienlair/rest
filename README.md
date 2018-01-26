@@ -31,6 +31,8 @@ aurelien@linux:~$ /usr/bin/pip search mjson.tool
 mjson (0.3.1)  - Extended "python -mjson.tool"
 aurelien@linux:~$ /usr/bin/pip install mjson.tool
 ```
+Alternatively to `mjson` you might want to use [jq](https://stedolan.github.io/jq/download/) which is really cool and easy to install...!
+
 Now that we have a pretty Json parser let's get started!
 
 Please note we are assuming you have a PHP client on your machine.
