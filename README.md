@@ -101,3 +101,5 @@ aurelien@linux:~$ curl -v -H "Content-type: application/json" \
 ```
 You can see 2 different media types of the same request, one with the data in [Json](https://en.wikipedia.org/wiki/JSON) format, the other one is the [application/x-www-form-urlencoded](https://en.wikipedia.org/wiki/Percent-encoding#The_application.2Fx-www-form-urlencoded_type) media type.
 
+### Laravel Rest API
+If you want check [this](https://github.com/aurelienlair/rest-laravel) Laravel API rest API I implemented
