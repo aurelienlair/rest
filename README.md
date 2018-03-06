@@ -127,6 +127,12 @@ aurelien@linux:~$ /usr/bin/curl -v -H "Content-type: application/json" \
 -X GET "http://www.restisthebest.com:8888/api/actors/1" 
 ```
 
+The characteristics of a `GET` request are:
+
+* it [idempotent](https://en.wikipedia.org/wiki/Idempotence) which means that we can make that same call repeatedly it will produce the same result. 
+* it is safe, meaning they are *not* intended for creating/modifying resources
+* it is cacheable
+
 3. HEAD 
 
 Similary to the GET method, HEAD is used to retrieve a resource but must instead *not* return a message-body in the response. This method is often used for testing hypertext links for validity, accessibility, and recent modification.
@@ -147,6 +153,12 @@ To get all the actor which id is `1` the command is
 aurelien@linux:~$ /usr/bin/curl -v -H "Content-type: application/json" \
 -X HEAD "http://www.restisthebest.com:8888/api/actors/1" 
 ```
+
+The characteristics of a `HEAD` request are:
+
+* it [idempotent](https://en.wikipedia.org/wiki/Idempotence) which means that we can make that same call repeatedly it will produce the same result. 
+* it is safe, meaning they are *not* intended for creating/modifying resources
+* it is cacheable
 
 4. PUT 
 
@@ -172,6 +184,11 @@ aurelien@linux:~$ /usr/bin/curl -v -H "Content-type: application/json" \
 
 This method is considered indempotent because it can be called many times without different outcomes while as matter of fact it is *not* safe.
 
+The characteristics of a `PUT` request are:
+
+* it is [idempotent](https://en.wikipedia.org/wiki/Idempotence) which means that we can make that same call repeatedly it will produce the same result. 
+* it is *not* safe, meaning they are only intended for creating new resources (while GET/HEAD HTTP methods do not modify resources)
+
 5. PATCH
 
 This http method is used to update partially a resource. This method can be useful if you need to update a resource which contains a lot of data and you just need to update some of them.
@@ -187,6 +204,11 @@ aurelien@linux:~$ /usr/bin/curl -v -H "Content-type: application/json" \
 -d '{"firstname":"James"}' \
 -X PATCH "http://www.restisthebest.com:8888/api/actors/1"
 ```
+
+The characteristics of a `PATCH` request are:
+
+* it *not* [idempotent](https://en.wikipedia.org/wiki/Idempotence) which means that we can make that same call repeatedly it will *not* produce the same result. 
+* it is *not* safe, meaning they are only intended for updating partially resources which thefore can change (while GET/HEAD HTTP methods do not modify resources)
 
 6. DELETE 
 
@@ -219,6 +241,11 @@ aurelien@linux:~$ /usr/bin/curl -v -H "Content-type: application/json" \
 < 
 ```
 
+The characteristics of a `DELETE` request are:
+
+* it is [idempotent](https://en.wikipedia.org/wiki/Idempotence) which means that we can make that same call repeatedly it will produce the same result. 
+* it is *not* safe, meaning they are only intended for deleting resources (while GET/HEAD HTTP methods do not modify resources)
+
 7. OPTIONS 
 
 The OPTIONS method represents a request for information about the communication options available on the request/response chain identified by the Request-URI. This method allows the client to determine the options and/or requirements associated with a resource, or the capabilities of a server, without implying a resource action or initiating a resource retrieval.
@@ -247,5 +274,12 @@ aurelien@linux:~$ /usr/bin/curl -v -H "Content-type: application/json" \
 < Content-type: application/json; charset=utf-8
 < 
 ```
+
+The characteristics of an `OPTIONS` request are:
+
+* it [idempotent](https://en.wikipedia.org/wiki/Idempotence) which means that we can make that same call repeatedly it will produce the same result. 
+* it is safe, meaning they are *not* intended for creating/modifying resources
+* it is cacheable
+
 ### Laravel Rest API
 If you want check [this](https://github.com/aurelienlair/rest-laravel) Laravel API rest API I implemented.
