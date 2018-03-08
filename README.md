@@ -149,10 +149,24 @@ The GET as a safe method can be cached, prefetched without any repercussions to 
 To get all the actors the command is 
 ```
 aurelien@linux:~$ /usr/bin/curl -v -H "Accept: application/json" \
--X GET "http://www.restisthebest.com:8888/api/actors" 
+-X GET "http://www.restisthebest.com:8888/api/actors"
+
+> GET /api/actors/ HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: www.restisthebest.com:8888
+> Accept: application/json
+> 
+< HTTP/1.1 200 OK
+< Host: www.restisthebest.com:8888
+< Date: Thu, 08 Mar 2018 08:12:44 +0000
+< Connection: close
+< X-Powered-By: PHP/7.1.11-1+ubuntu14.04.1+deb.sury.org+1
+< Content-type: application/json
+< 
+[{"id":"fa15b3333349efc032cc8aada81a0e9c","firstname":"Robert","lastname":"De Niro","country":"US"},{"id":"3a760d3b7974cab159860f7660d90688","firstname":"Ewan","lastname":"McGregor","country":"GB"}]
 ```
 
-To get all the actor which id is `1` the command is 
+To get all the actor which id is `fd015f0e682c4ec6e196ada96c7cdf3a` the command is 
 ```
 aurelien@linux:~$ /usr/bin/curl -v -H "Accept: application/json" \
 -X GET "http://www.restisthebest.com:8888/api/actors/fd015f0e682c4ec6e196ada96c7cdf3a" 
@@ -170,6 +184,25 @@ aurelien@linux:~$ /usr/bin/curl -v -H "Accept: application/json" \
 < Content-type: application/json
 < 
 {"id":"54262a792a204cb1d6ce0770e5bb85c3","firstname":"Ewan","lastname":"MacGregor","country":"GB"}
+```
+
+When the requested resource (here `UNKNOWN_ID`) is not found the server must respond with a 404
+```
+/usr/bin/curl -v -H "Accept: application/json" \
+-X GET "http://www.restisthebest.com:8888/api/actors/UNKNOWN_ID" 
+
+> GET /api/actors/UNKNOWN_ID HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: www.restisthebest.com:8888
+> Accept: application/json
+> 
+< HTTP/1.1 404 Not Found
+< Host: www.restisthebest.com:8888
+< Date: Thu, 08 Mar 2018 08:25:24 +0000
+< Connection: close
+< X-Powered-By: PHP/7.1.11-1+ubuntu14.04.1+deb.sury.org+1
+< Content-type: application/json
+< 
 ```
 
 The characteristics of a `GET` request are:
