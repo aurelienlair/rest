@@ -211,7 +211,8 @@ The characteristics of a `GET` request are:
 * it is safe, meaning they are *not* intended for creating/modifying resources
 * it is cacheable
 
-In the above request we're requesting the server to repond with an `application/json` content (which is generally the one used on the server to server APIs)
+In the above request we're requesting the server to repond with an `application/json` content (which is generally the one used on the server to server APIs).
+
 3. HEAD 
 
 Similary to the GET method, HEAD is used to retrieve a resource but must instead *not* return a message-body in the response. This method is often used for testing hypertext links for validity, accessibility, and recent modification.
