@@ -9,13 +9,21 @@
     ],
     "minimum-stability": "stable",
     "prefer-stable": true,
+    "require-dev": {
+        "phpunit/phpunit": "6.0.*"
+    },
     "require": {
         "php": ">=7",
         "guzzlehttp/guzzle": "~6.0"
     },
     "autoload": {
         "psr-4": {
-            "Cast\\": "src/Cast"
+            "Cast\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "spec"
         }
     }
 }
