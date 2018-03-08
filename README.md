@@ -225,6 +225,20 @@ To get all the actors the command is
 ```
 aurelien@linux:~$ /usr/bin/curl -v -H "Content-type: application/json" \
 -X HEAD "http://www.restisthebest.com:8888/api/actors" 
+
+> HEAD /api/actors HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: www.restisthebest.com:8888
+> Accept: */*
+> Content-type: application/json
+> 
+< HTTP/1.1 200 OK
+< Host: www.restisthebest.com:8888
+< Date: Thu, 08 Mar 2018 09:39:15 +0000
+< Connection: close
+< X-Powered-By: PHP/7.1.11-1+ubuntu14.04.1+deb.sury.org+1
+< Content-type: application/json
+< 
 ```
 
 To get all the actor which id is `1` the command is 
