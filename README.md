@@ -95,10 +95,41 @@ aurelien@linux:~$ /usr/bin/curl -v -H "Content-type: application/x-www-form-urle
 -d "firstname=Ewan&lastname=McGregor&country=GB" \
 -X POST "http://www.restisthebest.com:8888/api/actors" 
 
+> POST /api/actors HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: www.restisthebest.com:8888
+> Accept: */*
+> Content-type: application/x-www-form-urlencoded
+> Content-Length: 43
+> 
+< HTTP/1.1 201 Created
+< Host: www.restisthebest.com:8888
+< Date: Thu, 08 Mar 2018 08:00:28 +0000
+< Connection: close
+< X-Powered-By: PHP/7.1.11-1+ubuntu14.04.1+deb.sury.org+1
+< Content-type: application/json
+< Location: http://www.restisthebest.com:8888/api/actors/fd015f0e682c4ec6e196ada96c7cdf3a
+< 
 
 aurelien@linux:~$ /usr/bin/curl -v -H "Content-type: application/json" \
 -d '{"firstname":"Ewan","lastname":"McGregor","country":"GB"}' \
--X POST "http://www.restisthebest.com:8888/api/actors" 
+-X POST "http://www.restisthebest.com:8888/api/actors"
+
+> POST /api/actors HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: www.restisthebest.com:8888
+> Accept: */*
+> Content-type: application/json
+> Content-Length: 43
+> 
+< HTTP/1.1 201 Created
+< Host: www.restisthebest.com:8888
+< Date: Thu, 08 Mar 2018 08:00:28 +0000
+< Connection: close
+< X-Powered-By: PHP/7.1.11-1+ubuntu14.04.1+deb.sury.org+1
+< Content-type: application/json
+< Location: http://www.restisthebest.com:8888/api/actors/fd015f0e682c4ec6e196ada96c7cdf3a
+< 
 ```
 You can see 2 different media types of the same request, one with the data in [Json](https://en.wikipedia.org/wiki/JSON) format, the other one is the [application/x-www-form-urlencoded](https://en.wikipedia.org/wiki/Percent-encoding#The_application.2Fx-www-form-urlencoded_type) media type.
 
@@ -117,14 +148,28 @@ The GET as a safe method can be cached, prefetched without any repercussions to 
 
 To get all the actors the command is 
 ```
-aurelien@linux:~$ /usr/bin/curl -v -H "Content-type: application/json" \
+aurelien@linux:~$ /usr/bin/curl -v -H "Accept: application/json" \
 -X GET "http://www.restisthebest.com:8888/api/actors" 
 ```
 
 To get all the actor which id is `1` the command is 
 ```
-aurelien@linux:~$ /usr/bin/curl -v -H "Content-type: application/json" \
--X GET "http://www.restisthebest.com:8888/api/actors/1" 
+aurelien@linux:~$ /usr/bin/curl -v -H "Accept: application/json" \
+-X GET "http://www.restisthebest.com:8888/api/actors/fd015f0e682c4ec6e196ada96c7cdf3a" 
+
+> GET /api/actors/fd015f0e682c4ec6e196ada96c7cdf3a HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: www.restisthebest.com:8888
+> Accept: application/json
+> 
+< HTTP/1.1 200 OK
+< Host: www.restisthebest.com:8888
+< Date: Thu, 08 Mar 2018 08:03:59 +0000
+< Connection: close
+< X-Powered-By: PHP/7.1.11-1+ubuntu14.04.1+deb.sury.org+1
+< Content-type: application/json
+< 
+{"id":"54262a792a204cb1d6ce0770e5bb85c3","firstname":"Ewan","lastname":"MacGregor","country":"GB"}
 ```
 
 The characteristics of a `GET` request are:
@@ -133,6 +178,7 @@ The characteristics of a `GET` request are:
 * it is safe, meaning they are *not* intended for creating/modifying resources
 * it is cacheable
 
+In the above request we're requesting the server to repond with an `application/json` content (which is generally the one used on the server to server APIs)
 3. HEAD 
 
 Similary to the GET method, HEAD is used to retrieve a resource but must instead *not* return a message-body in the response. This method is often used for testing hypertext links for validity, accessibility, and recent modification.
